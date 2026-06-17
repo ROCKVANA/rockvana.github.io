@@ -28,7 +28,7 @@
             ROCKVANA
         </h1>
         <p class="text-slate-200 mt-4 text-2xl md:text-3xl tracking-wide bangla-handwriting">
-          ' এককাপ চা আর রকভানা গান '
+            এককাপ চা আর রকভানা গান
         </p>
     </header>
 
@@ -49,9 +49,7 @@
                 <i class="fa-brands fa-youtube text-[#FF0000]"></i> YouTube Recent 10 Tracks
             </h2>
             
-            <!-- গ্রিড লেআউট যেখানে ১০টি ভিডিও লোড হবে -->
             <div id="youtube-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- লোডিং টেক্সট -->
                 <p class="text-slate-500 col-span-full text-center py-8">গানের লিস্ট লোড হচ্ছে...</p>
             </div>
         </div>
@@ -62,7 +60,8 @@
     <footer class="w-full max-w-6xl py-10 flex flex-col items-center gap-6 border-t border-slate-900 mt-12">
         <div class="flex space-x-8 text-2xl text-slate-400">
             <a href="https://open.spotify.com/artist/7f41NjRiBqNpnwI7CUaEpO?si=eVkIUhBNSCyewe1nCXoYLw" target="_blank" class="hover:text-[#1DB954] transition-colors" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
-            <a href="https://youtube.com/@rockvana21?si=OtLs79DVw8-SJJpV" target="_blank" class="hover:text-[#FF0000] transition-colors" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <!-- আপনার নতুন ইউটিউব লিংকটি এখানে আপডেট করা হয়েছে -->
+            <a href="https://youtube.com/@rockvana21?si=Qwu2VWoybh9Irzge" target="_blank" class="hover:text-[#FF0000] transition-colors" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
             <a href="https://www.facebook.com/share/1D5X9bJ4Ng/" target="_blank" class="hover:text-[#1877F2] transition-colors" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
         </div>
         
@@ -74,10 +73,9 @@
     <!-- ইউটিউব অটো-ফিড স্ক্রিপ্ট -->
     <script>
         async function loadLatestVideos() {
-            // আপনার চ্যানেলের আইডি দিয়ে RSS Feed URL
-            const channelId = "UC_V-G0c69V8b7v3Xq-R8DGA"; 
+            // আপনার আসল চ্যানেল আইডি এখানে সেট করা হয়েছে
+            const channelId = "UCzinBgXzPK_TPzfA4H38EBA"; 
             const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-            // RSS কে JSON এ রূপান্তর করার ফ্রি API
             const apiConverter = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
             try {
@@ -86,21 +84,18 @@
                 const grid = document.getElementById('youtube-grid');
                 
                 if (data.status === 'ok' && data.items.length > 0) {
-                    grid.innerHTML = ''; // লোডিং টেক্সট মুছে ফেলা
+                    grid.innerHTML = ''; 
                     
-                    // সর্বোচ্চ ১০টি ভিডিও নেওয়া হবে
                     const maxVideos = Math.min(data.items.length, 10);
                     
                     for (let i = 0; i < maxVideos; i++) {
                         const video = data.items[i];
-                        // ভিডিও লিংক থেকে আইডি বের করা
                         const videoId = video.link.split('v=')[1];
                         
-                        // প্রতিটি ভিডিওর জন্য HTML ফ্রেম তৈরি
                         const videoElement = document.createElement('div');
                         videoElement.className = "w-full aspect-video rounded-xl overflow-hidden shadow-lg border border-white/5";
                         videoElement.innerHTML = `
-                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/${videoId}" title="${video.title}" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/${videoId}" title="${video.title}" frameBorder="0" allowfullscreen></iframe>
                         `;
                         grid.appendChild(videoElement);
                     }
@@ -113,7 +108,6 @@
             }
         }
 
-        // পেজ লোড হলে ফাংশনটি রান করবে
         window.onload = loadLatestVideos;
     </script>
 
