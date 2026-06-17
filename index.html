@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROCKVANA | Official Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #0d0e12; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .glass { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .neon-text { text-shadow: 0 0 10px #8b5cf6, 0 0 20px #8b5cf6; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Navigation -->
+    <nav class="w-full py-5 px-8 flex justify-between items-center glass sticky top-0 z-50">
+        <div class="text-2xl font-black tracking-wider text-violet-500 neon-text">ROCKVANA</div>
+        <div class="space-x-6 hidden md:flex font-medium text-sm tracking-wide">
+            <a href="#" class="hover:text-violet-400 transition-colors">HOME</a>
+            <a href="#" class="hover:text-violet-400 transition-colors">DISCOGRAPHY</a>
+            <a href="#" class="hover:text-violet-400 transition-colors">ABOUT</a>
+            <a href="#" class="hover:text-violet-400 transition-colors">CONTACT</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="flex-grow flex flex-col items-center justify-center text-center px-4 py-20">
+        <div class="glass p-10 md:p-16 rounded-3xl max-w-2xl w-full shadow-2xl relative overflow-hidden group">
+            <div class="absolute -top-10 -left-10 w-40 h-40 bg-violet-600 rounded-full blur-[80px] opacity-30 group-hover:opacity-50 transition-opacity"></div>
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-fuchsia-600 rounded-full blur-[80px] opacity-30 group-hover:opacity-50 transition-opacity"></div>
+
+            <span class="text-xs font-bold uppercase tracking-widest text-violet-400 glass px-3 py-1 rounded-full">Official Music Portfolio</span>
+            
+            <h1 class="text-4xl md:text-6xl font-black mt-6 tracking-tight">
+                Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-500 to-pink-500">ROCKVANA</span>
+            </h1>
+            
+            <p class="text-slate-400 mt-6 text-sm md:text-base leading-relaxed">
+                An animated music world powered by premium aesthetics. Live Spotify integration and music sync features are coming soon.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#" class="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold px-8 py-3.5 rounded-full shadow-lg shadow-violet-500/20 transition-all transform hover:-translate-y-0.5 text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-play"></i> Listen Now
+                </a>
+                <a href="#" class="glass hover:bg-slate-800 text-slate-200 font-bold px-8 py-3.5 rounded-full transition-all transform hover:-translate-y-0.5 text-sm flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-spotify text-green-400 text-lg"></i> Connect Spotify
+                </a>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="mt-12 flex justify-center space-x-6 text-xl text-slate-400">
+                <a href="#" class="hover:text-violet-400 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="hover:text-violet-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-violet-400 transition-colors"><i class="fa-brands fa-soundcloud"></i></a>
+                <a href="#" class="hover:text-violet-400 transition-colors"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-6 text-center text-xs text-slate-500 glass">
+        &copy; 2026 ROCKVANA. All Rights Reserved. Hosted with ♥ via GitHub Pages.
+    </footer>
+
+</body>
+</html>
