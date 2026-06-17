@@ -6,7 +6,6 @@
     <title>ROCKVANA | Official Website</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- বাংলা হ্যান্ডরাইটিং/ক্যাজুয়াল ফন্ট ইম্পোর্ট করা হলো -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@500;700&display=swap" rel="stylesheet">
@@ -15,41 +14,52 @@
         body { background-color: #0b0c10; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         .glass { background: rgba(25, 30, 41, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .spotify-color { color: #1DB954; text-shadow: 0 0 15px rgba(29, 185, 84, 0.4); }
-        /* হ্যান্ডরাইটিং স্টাইল ক্লাস */
-        .bangla-handwriting { 
-            font-family: 'Atma', cursive; 
-        }
+        .bangla-handwriting { font-family: 'Atma', cursive; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between items-center px-4">
 
     <!-- Hero / Header Section -->
-    <header class="w-full max-w-3xl text-center pt-16 pb-8">
+    <header class="w-full max-w-6xl text-center pt-16 pb-8">
         <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 glass px-3 py-1 rounded-full bg-emerald-950/20">
             ● Auto-Sync Live Feed
         </span>
         <h1 class="text-5xl md:text-7xl font-black mt-6 tracking-tight spotify-color">
             ROCKVANA
         </h1>
-        <!-- এখানে হ্যান্ডরাইটিং স্টাইল এবং সাইজ কিছুটা বাড়িয়ে দেওয়া হয়েছে -->
         <p class="text-slate-200 mt-4 text-2xl md:text-3xl tracking-wide bangla-handwriting">
-            এককাপ চা আর রক্ভানার গান
+          ' এককাপ চা আর রকভানা গান '
         </p>
     </header>
 
-    <!-- Main Content (Spotify Embed) -->
-    <main class="w-full max-w-3xl flex-grow flex flex-col items-center justify-center my-4">
+    <!-- Main Content -->
+    <main class="w-full max-w-6xl flex-grow flex flex-col gap-8 my-4">
+        
+        <!-- ওপরে স্পটিফাই সেকশন -->
         <div class="w-full glass p-6 md:p-8 rounded-3xl shadow-2xl">
             <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-400 mb-4 flex items-center gap-2">
-                <i class="fa-brands fa-spotify text-[#1DB954]"></i> Verified Discography
+                <i class="fa-brands fa-spotify text-[#1DB954]"></i> Spotify Discography
             </h2>
-            
             <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/7f41NjRiBqNpnwI7CUaEpO?utm_source=generator&si=c6c1dc0ea7984ec1" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
+
+        <!-- নিচে ইউটিউব ১০টি লেটেস্ট গান সেকশন -->
+        <div class="w-full glass p-6 md:p-8 rounded-3xl shadow-2xl">
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-400 mb-6 flex items-center gap-2">
+                <i class="fa-brands fa-youtube text-[#FF0000]"></i> YouTube Recent 10 Tracks
+            </h2>
+            
+            <!-- গ্রিড লেআউট যেখানে ১০টি ভিডিও লোড হবে -->
+            <div id="youtube-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- লোডিং টেক্সট -->
+                <p class="text-slate-500 col-span-full text-center py-8">গানের লিস্ট লোড হচ্ছে...</p>
+            </div>
+        </div>
+
     </main>
 
     <!-- Footer & Social Links -->
-    <footer class="w-full max-w-3xl py-10 flex flex-col items-center gap-6 border-t border-slate-900 mt-12">
+    <footer class="w-full max-w-6xl py-10 flex flex-col items-center gap-6 border-t border-slate-900 mt-12">
         <div class="flex space-x-8 text-2xl text-slate-400">
             <a href="https://open.spotify.com/artist/7f41NjRiBqNpnwI7CUaEpO?si=eVkIUhBNSCyewe1nCXoYLw" target="_blank" class="hover:text-[#1DB954] transition-colors" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
             <a href="https://youtube.com/@rockvana21?si=OtLs79DVw8-SJJpV" target="_blank" class="hover:text-[#FF0000] transition-colors" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
@@ -60,6 +70,52 @@
             &copy; 2026 ROCKVANA. Hosted via GitHub Pages.
         </p>
     </footer>
+
+    <!-- ইউটিউব অটো-ফিড স্ক্রিপ্ট -->
+    <script>
+        async function loadLatestVideos() {
+            // আপনার চ্যানেলের আইডি দিয়ে RSS Feed URL
+            const channelId = "UC_V-G0c69V8b7v3Xq-R8DGA"; 
+            const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+            // RSS কে JSON এ রূপান্তর করার ফ্রি API
+            const apiConverter = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+            try {
+                const response = await fetch(apiConverter);
+                const data = await response.json();
+                const grid = document.getElementById('youtube-grid');
+                
+                if (data.status === 'ok' && data.items.length > 0) {
+                    grid.innerHTML = ''; // লোডিং টেক্সট মুছে ফেলা
+                    
+                    // সর্বোচ্চ ১০টি ভিডিও নেওয়া হবে
+                    const maxVideos = Math.min(data.items.length, 10);
+                    
+                    for (let i = 0; i < maxVideos; i++) {
+                        const video = data.items[i];
+                        // ভিডিও লিংক থেকে আইডি বের করা
+                        const videoId = video.link.split('v=')[1];
+                        
+                        // প্রতিটি ভিডিওর জন্য HTML ফ্রেম তৈরি
+                        const videoElement = document.createElement('div');
+                        videoElement.className = "w-full aspect-video rounded-xl overflow-hidden shadow-lg border border-white/5";
+                        videoElement.innerHTML = `
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/${videoId}" title="${video.title}" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        `;
+                        grid.appendChild(videoElement);
+                    }
+                } else {
+                    document.getElementById('youtube-grid').innerHTML = '<p class="text-red-400 col-span-full text-center">কোনো ভিডিও পাওয়া যায়নি।</p>';
+                }
+            } catch (error) {
+                console.error("Error fetching YouTube feed:", error);
+                document.getElementById('youtube-grid').innerHTML = '<p class="text-red-400 col-span-full text-center">ভিডিও লোড করতে সমস্যা হয়েছে।</p>';
+            }
+        }
+
+        // পেজ লোড হলে ফাংশনটি রান করবে
+        window.onload = loadLatestVideos;
+    </script>
 
 </body>
 </html>
